@@ -9,3 +9,6 @@
 ## STRUCTURE SKETCH
 
 <img src="https://github.com/minheeson/Board-It/blob/master/screenshots/StructureSketch.png" width=650/>
+
+
+
