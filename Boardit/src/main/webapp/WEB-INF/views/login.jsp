@@ -14,6 +14,7 @@
 
 <body>
 
+
 	<div class="login-page">
 		<div class="form">
 			<!-- <form class="register-form">
@@ -28,8 +29,8 @@
 			<form class="login-form">
 				<input type="text" placeholder="username" /> <input type="password"
 					placeholder="password" />
-				<button>login</button>
-				<button>sign up</button>
+				<button class="btn_login">login</button>
+				<button class="btn_signup">sign up</button>
 			</form>
 		</div>
 	</div>
