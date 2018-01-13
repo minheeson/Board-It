@@ -2,11 +2,13 @@ package com.sonandhan.boardit.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -22,19 +24,32 @@ import com.sonandhan.boardit.command.BIListCommand;
 import com.sonandhan.boardit.command.BIModifyCommand;
 import com.sonandhan.boardit.command.BIReplyCommand;
 import com.sonandhan.boardit.command.BIWriteCommand;
-
-
+import com.sonandhan.boardit.dto.UserDTO;
+import com.sonandhan.boardit.service.UserService;
 
 @Controller
 public class BIController {
 
 	BICommand command;
-	
-	private static final Logger logger = LoggerFactory.getLogger(BIController.class);
 
-	
+	private static final Logger logger = LoggerFactory.getLogger(BIController.class);
+	@Inject
+	private UserService service;
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) throws Exception {
+
+		logger.info("home");
+
+		List<UserDTO> memberList = service.selectMember();
+
+		model.addAttribute("memberList", memberList);
+
+		return "home";
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String login(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Date date = new Date();
@@ -132,35 +147,35 @@ public class BIController {
 	@RequestMapping("/reply_view")
 	public String reply_view(HttpServletRequest request, Model model) {
 		System.out.println("reply_view()");
-		
+
 		model.addAttribute("request", request);
-		
-		// Reply 뷰 보는 리퀘스튼데, 
-		// 우리꺼는 필요 없는거 같아서 일단 제외   
-		//command = new BIReplyViewCommand();
-		//command.execute(model);
+
+		// Reply 뷰 보는 리퀘스튼데,
+		// 우리꺼는 필요 없는거 같아서 일단 제외
+		// command = new BIReplyViewCommand();
+		// command.execute(model);
 		return "reply_view";
 	}
-	
+
 	@RequestMapping("/reply")
 	public String reply(HttpServletRequest request, Model model) {
 		System.out.println("reply()");
-		
+
 		model.addAttribute("reauest", request);
 		command = new BIReplyCommand();
 		command.execute(model);
-		
+
 		return "redirect:list";
 	}
-	
+
 	@RequestMapping("/delete")
 	public String delete(HttpServletRequest request, Model model) {
 		System.out.println("delete()");
-		
+
 		model.addAttribute("request", request);
 		command = new BIDeleteCommand();
 		command.execute(model);
-		
+
 		return "redirect:list";
 	}
 
