@@ -4,10 +4,25 @@
 <%@ page session="false"%>
 <html>
 <head>
-<title>Home</title>
+
+<link href="<c:url value="/resources/css/home_style.css"/>"
+	rel="stylesheet">
+
+<meta charset="UTF-8">
+<title>BOARD-IT</title>
 </head>
 <body>
-	<h1>Hello world!</h1>
+
+	<div class="header">
+		<img class="img_logo" src="resources/img/boardit.png" />
+		<button class="btn_signup">signup</button>
+		<button class="btn_login">login</button>
+	</div>
+
+
+
+
+
 
 	<table>
 		<thead>
@@ -27,6 +42,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
+
 
 
 </body>
