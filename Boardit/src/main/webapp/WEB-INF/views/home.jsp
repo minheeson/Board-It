@@ -8,9 +8,13 @@
 <link href="<c:url value="/resources/css/home_style.css"/>"
 	rel="stylesheet">
 
+<script src="<c:url value="/resources/js/home.js" />"></script>
+
 <meta charset="UTF-8">
 <title>BOARD-IT</title>
 </head>
+
+
 <body>
 
 	<div class="header">

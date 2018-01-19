@@ -89,6 +89,14 @@ public class BIController {
 
 		return "profile";
 	}
+	
+	@RequestMapping("/board")
+	public String board(Model model) {
+
+		System.out.println("board()");
+		// 작성 화면(form)만 띄움
+		return "board";
+	}
 
 	@RequestMapping("/list")
 	public String list(Model model) {
