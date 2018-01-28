@@ -97,6 +97,14 @@ public class BIController {
 		// 작성 화면(form)만 띄움
 		return "board";
 	}
+	
+	@RequestMapping("/pop_board")
+	public String popBoard(Model model) {
+
+		System.out.println("pop_board()");
+		// 작성 화면(form)만 띄움
+		return "pop_board";
+	}
 
 	@RequestMapping("/list")
 	public String list(Model model) {

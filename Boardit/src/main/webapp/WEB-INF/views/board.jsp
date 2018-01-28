@@ -4,16 +4,18 @@
 <%@ page session="false"%>
 <html>
 <head>
-
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <link href="<c:url value="/resources/css/board_style.css"/>"
 	rel="stylesheet">
+
+<script src="<c:url value="/resources/js/board.js?v=23" />"></script>
 
 <meta charset="UTF-8">
 <title>BOARD-IT</title>
 <body>
-
 	<div class="header">
 		<img class="img_logo" src="resources/img/boardit.png" />
+
 		<p class="user_name">mini_son</p>
 	</div>
 
@@ -21,15 +23,22 @@
 
 		<div class="ct_personal">
 			<div class="ct_personal_header">
-				<button class="btn_plus" type="submit">
+				<button class="btn_plus" id="btn_plus" type="submit">
 					<img class="btn_img" src="resources/img/btn_plus.png">
 				</button>
-				
+
 				<p class="p_personal">Personal Board</p>
 			</div>
-			
-			<div>
-			
+
+			<div class="ct_personal_board">
+				<ul class="mylist" id="myList">
+
+					<li><a href="https://www.w3schools.com" id="a_school">w3schools</a></li>
+					<li><a href="https://www.w3schools.com">w3schools</a></li>
+					<li><a href="https://www.w3schools.com">w3schools</a></li>
+
+				</ul>
+
 			</div>
 
 
@@ -48,6 +57,8 @@
 
 	</div>
 
+
+	<input type="text" id="p_txt">
 
 
 </body>
