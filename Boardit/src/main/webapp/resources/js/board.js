@@ -19,7 +19,7 @@ $(document).ready(
 function setChildValue(name){
     //document.getElementById("p_txt").value = name;
 	var $list = $('#myList');
-    var li = "<li><a>NEW</a></li>";
+    var li = "<li><a>"+ name +"</a></li>";
     $list.append(li);
 }
 

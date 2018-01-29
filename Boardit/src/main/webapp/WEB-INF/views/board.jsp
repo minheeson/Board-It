@@ -5,10 +5,10 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<link href="<c:url value="/resources/css/board_style.css"/>"
+<link href="<c:url value="/resources/css/board_style.css?v=2"/>"
 	rel="stylesheet">
 
-<script src="<c:url value="/resources/js/board.js?v=23" />"></script>
+<script src="<c:url value="/resources/js/board.js?v=27" />"></script>
 
 <meta charset="UTF-8">
 <title>BOARD-IT</title>
@@ -33,9 +33,7 @@
 			<div class="ct_personal_board">
 				<ul class="mylist" id="myList">
 
-					<li><a href="https://www.w3schools.com" id="a_school">w3schools</a></li>
-					<li><a href="https://www.w3schools.com">w3schools</a></li>
-					<li><a href="https://www.w3schools.com">w3schools</a></li>
+					<li><a href="https://www.w3schools.com" id="a_school">SAMPLE</a></li>
 
 				</ul>
 

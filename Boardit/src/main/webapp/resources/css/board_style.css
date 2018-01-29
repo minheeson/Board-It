@@ -79,6 +79,9 @@ ul.mylist, ol.mylist {
 }
 
 ul.mylist li, ol.mylist li {
+	background: #e76f58;
+	color:#eeeeee;
+	font-weight: bold;
 	display: inline-block;
 	padding: 10px;
 	width: 170px;
@@ -89,4 +92,6 @@ ul.mylist li, ol.mylist li {
 	border: 1px solid #efefef;
 	font-size: 12px;
 	cursor: pointer;
+	text-align: center;
+	vertical-align: middle;
 }
