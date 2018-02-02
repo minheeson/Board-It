@@ -5,10 +5,10 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<link href="<c:url value="/resources/css/board_style.css?v=2"/>"
+<link href="<c:url value="/resources/css/board_style.css?v=28"/>"
 	rel="stylesheet">
 
-<script src="<c:url value="/resources/js/board.js?v=27" />"></script>
+<script src="<c:url value="/resources/js/board.js?v=72" />"></script>
 
 <meta charset="UTF-8">
 <title>BOARD-IT</title>
@@ -23,7 +23,8 @@
 
 		<div class="ct_personal">
 			<div class="ct_personal_header">
-				<button class="btn_plus" id="btn_plus" type="submit">
+				<button class="btn_personal_plus" id="btn_personal_plus"
+					type="submit">
 					<img class="btn_img" src="resources/img/btn_plus.png">
 				</button>
 
@@ -31,7 +32,7 @@
 			</div>
 
 			<div class="ct_personal_board">
-				<ul class="mylist" id="myList">
+				<ul class="boardList" id="personalList">
 
 					<li><a href="https://www.w3schools.com" id="a_school">SAMPLE</a></li>
 
@@ -42,21 +43,30 @@
 
 		</div>
 
-		<!-- <div class="ct_team">
+		<div class="ct_team">
 			<div class="ct_team_header">
-				<button class="btn_plus" type="submit">
+				<button class="btn_team_plus" id="btn_team_plus" type="submit">
 					<img class="btn_img" src="resources/img/btn_plus.png">
 				</button>
-			</div>
-			
-			<div></div>
 
-		</div> -->
+				<p class="p_team">Team Board</p>
+			</div>
+
+			<div class="ct_team_board">
+				<ul class="boardList" id="teamList">
+
+					<li><a href="https://www.w3schools.com" id="a_school">SAMPLE</a></li>
+
+				</ul>
+
+			</div>
+
+
+		</div>
+
+
 
 	</div>
-
-
-	<input type="text" id="p_txt">
 
 
 </body>

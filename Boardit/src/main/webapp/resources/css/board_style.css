@@ -40,7 +40,29 @@ body {
 	width: 90%;
 }
 
-.content .ct_personal .ct_personal_header .btn_plus {
+.content .ct_team .ct_team_header {
+	display: table;
+	width: 90%;
+	height: 40px;
+	width: 90%;
+}
+
+.content .ct_personal .ct_personal_header .btn_personal_plus {
+	display: table-cell;
+	vertical-align: middle;
+	background: #ffffff;
+	margin-left: 10px;
+	margin-top: 16px;
+	border: none;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+	float: left;
+	border: none;
+	border: none;
+}
+
+.content .ct_team .ct_team_header .btn_team_plus {
 	display: table-cell;
 	vertical-align: middle;
 	background: #ffffff;
@@ -66,20 +88,36 @@ body {
 	float: left;
 }
 
-.content .ct_personal .ct_personal_header .btn_plus .btn_img {
+.content .ct_team .ct_team_header .p_team {
+	display: table-cell;
+	vertical-align: middle;
+	float: left;
+	font-size: 18px;
+	font-weight: bold;
+	color: #3b3f3f;
+	padding-left: 14px;
+	float: left;
+}
+
+.content .ct_personal .ct_personal_header .btn_personal_plus .btn_img {
 	width: 18px;
 	height: 18px;
 }
 
-ul.mylist, ol.mylist {
+.content .ct_team .ct_team_header .btn_team_plus .btn_img {
+	width: 18px;
+	height: 18px;
+}
+
+ul.boardList, ol.boardList {
 	list-style: none;
 	margin: 10px;
 	padding: 0px;
 	width: 100%;
 }
 
-ul.mylist li, ol.mylist li {
-	background: #e76f58;
+ul.boardList li, ol.boardList li {
+	background: #e6e2de;
 	color:#eeeeee;
 	font-weight: bold;
 	display: inline-block;
