@@ -34,18 +34,26 @@ public class BIController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BIController.class);
 	@Inject
-	private UserService service;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) throws Exception {
+	private UserService user_service;
+
+	// 로그인 화면에서 로그인 버튼 클릭 후
+	@RequestMapping(value = "/home")
+	public String home(HttpServletRequest request) throws Exception {
 
 		logger.info("home");
 
-		List<UserDTO> memberList = service.selectMember();
+		UserDTO loginUser = user_service.findByUserIdAndPassword(request.getParameter("userId"),
+				request.getParameter("userPassword"));
 
-		model.addAttribute("memberList", memberList);
+		System.out.println(">>BIController - login(POST)");
+		System.out.println(">>BIController - loginUser : " + loginUser);
 
-		return "home";
+		if (loginUser != null) {
+			return "home";
+		} else {
+			return "login";
+		}
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -62,6 +70,7 @@ public class BIController {
 		return "login";
 	}
 
+	// 회원가입 페이지 이동 후
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -72,6 +81,29 @@ public class BIController {
 		String formattedDate = dateFormat.format(date);
 
 		model.addAttribute("serverTime", formattedDate);
+
+		System.out.println(">>BIController - signup(GET)");
+		return "signup";
+	}
+
+	// 회원가입 버튼 누른 후 DB삽입
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public String signup(Locale locale, Model model, HttpServletRequest request) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+		model.addAttribute("serverTime", formattedDate);
+
+		UserDTO user = new UserDTO(request.getParameter("userName"), request.getParameter("userId"),
+				request.getParameter("userPassword"));
+
+		System.out.println(">>BIController - signup(POST)");
+		System.out.println(">>BIController - signup(POST) user : " + user.getUserName());
+		user_service.signupUser(user);
 
 		return "signup";
 	}
@@ -89,7 +121,7 @@ public class BIController {
 
 		return "profile";
 	}
-	
+
 	@RequestMapping("/board")
 	public String board(Model model) {
 
@@ -97,7 +129,7 @@ public class BIController {
 		// 작성 화면(form)만 띄움
 		return "board";
 	}
-	
+
 	@RequestMapping("/pop_board")
 	public String popBoard(Model model) {
 

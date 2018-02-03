@@ -23,11 +23,6 @@
 		<button class="btn_login">login</button>
 	</div>
 
-
-
-
-
-
 	<table>
 		<thead>
 			<tr>

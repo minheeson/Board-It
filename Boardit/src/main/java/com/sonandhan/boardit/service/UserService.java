@@ -8,4 +8,7 @@ public interface UserService {
 
 	public List<UserDTO> selectMember() throws Exception;
 
+	public void signupUser(UserDTO user);
+
+	public UserDTO findByUserIdAndPassword(String userId, String password);
 }

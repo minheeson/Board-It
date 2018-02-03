@@ -7,6 +7,18 @@ public class UserDTO {
 	private String userName;
 	private String userImg;
 
+	public UserDTO(String userName, String userId, String userPassword) {
+		this.userName = userName;
+		this.userId = userId;
+		this.userPassword = userPassword;
+	}
+
+	public UserDTO(String userId, String userPassword) {
+		this.userName = null;
+		this.userId = userId;
+		this.userPassword = userPassword;
+	}
+
 	public String getUserId() {
 		return userId;
 	}
