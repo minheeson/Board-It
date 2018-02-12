@@ -5,10 +5,10 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<link href="<c:url value="/resources/css/board_style.css?v=28"/>"
+<link href="<c:url value="/resources/css/board_style.css?v=31"/>"
 	rel="stylesheet">
 
-<script src="<c:url value="/resources/js/board.js?v=72" />"></script>
+<script src="<c:url value="/resources/js/board.js?v=80" />"></script>
 
 <meta charset="UTF-8">
 <title>BOARD-IT</title>

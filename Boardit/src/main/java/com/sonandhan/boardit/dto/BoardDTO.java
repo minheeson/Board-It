@@ -6,6 +6,12 @@ public class BoardDTO {
 	private String boardName;
 	private String boardType;
 
+	public BoardDTO(int boardNum, String boardName, String boardType) {
+		this.boardName = boardName;
+		this.boardNum = boardNum;
+		this.boardType = boardType;
+	}
+	
 	public int getBoardNum() {
 		return boardNum;
 	}
@@ -28,6 +34,10 @@ public class BoardDTO {
 
 	public void setBoardType(String boardType) {
 		this.boardType = boardType;
+	}
+
+	public String toString() {
+		return "BoardDTO [boardNum=" + boardNum + ", boardName=" + boardName + ", boardType=" + boardType + "]";
 	}
 
 }

@@ -2,21 +2,18 @@ package com.sonandhan.boardit.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sonandhan.boardit.HomeController;
 import com.sonandhan.boardit.command.BICommand;
 import com.sonandhan.boardit.command.BIContentCommand;
 import com.sonandhan.boardit.command.BIDeleteCommand;
@@ -24,7 +21,9 @@ import com.sonandhan.boardit.command.BIListCommand;
 import com.sonandhan.boardit.command.BIModifyCommand;
 import com.sonandhan.boardit.command.BIReplyCommand;
 import com.sonandhan.boardit.command.BIWriteCommand;
+import com.sonandhan.boardit.dto.BoardDTO;
 import com.sonandhan.boardit.dto.UserDTO;
+import com.sonandhan.boardit.service.BoardService;
 import com.sonandhan.boardit.service.UserService;
 
 @Controller
@@ -33,9 +32,12 @@ public class BIController {
 	BICommand command;
 
 	private static final Logger logger = LoggerFactory.getLogger(BIController.class);
-	@Inject
 
-	private UserService user_service;
+	@Inject
+	private UserService userService;
+
+	@Inject
+	private BoardService boardService;
 
 	// 로그인 화면에서 로그인 버튼 클릭 후
 	@RequestMapping(value = "/home")
@@ -43,7 +45,7 @@ public class BIController {
 
 		logger.info("home");
 
-		UserDTO loginUser = user_service.findByUserIdAndPassword(request.getParameter("userId"),
+		UserDTO loginUser = userService.findByUserIdAndPassword(request.getParameter("userId"),
 				request.getParameter("userPassword"));
 
 		System.out.println(">>BIController - login(POST)");
@@ -103,7 +105,7 @@ public class BIController {
 
 		System.out.println(">>BIController - signup(POST)");
 		System.out.println(">>BIController - signup(POST) user : " + user.getUserName());
-		user_service.signupUser(user);
+		userService.signupUser(user);
 
 		return "signup";
 	}
@@ -122,19 +124,59 @@ public class BIController {
 		return "profile";
 	}
 
-	@RequestMapping("/board")
+	// @RequestMapping("/board")
+	// public String board(Model model) {
+	//
+	// System.out.println("board()");
+	// // 작성 화면(form)만 띄움
+	// return "board";
+	// }
+
+	@RequestMapping(value = "/board", method = RequestMethod.GET)
 	public String board(Model model) {
 
-		System.out.println("board()");
+		System.out.println("boardGET()");
 		// 작성 화면(form)만 띄움
 		return "board";
 	}
 
-	@RequestMapping("/pop_board")
-	public String popBoard(Model model) {
+	// @RequestMapping(value="/board", method = RequestMethod.POST)
+	// public String boardPOST(BoardDTO board, Model model) throws Exception {
+	//
+	// System.out.println("boardPOST()");
+	// // 작성 화면(form)만 띄움
+	//
+	// boardService.registBoard(board);
+	// model.addAttribute("result", "success");
+	//
+	// return "board";
+	// }
 
-		System.out.println("pop_board()");
+	//
+	// @RequestMapping("/pop_board")
+	// public String registerGET(Model model) {
+	//
+	// System.out.println("pop_board()");
+	// // 작성 화면(form)만 띄움
+	// return "pop_board";
+	// }
+
+	@RequestMapping(value = "/pop_board", method = RequestMethod.GET)
+	public String registerGET(Model model) {
+
+		System.out.println("registerGET()");
 		// 작성 화면(form)만 띄움
+		return "pop_board";
+	}
+
+	@RequestMapping(value = "/pop_board", method = RequestMethod.POST)
+	public String reqisterPOST(Model model, HttpServletRequest request) throws Exception {
+		System.out.println("reqister()");
+
+		BoardDTO board = new BoardDTO(3, request.getParameter("boardName"), "personal");
+		boardService.registBoard(board);
+		model.addAttribute("result", "success");
+
 		return "pop_board";
 	}
 

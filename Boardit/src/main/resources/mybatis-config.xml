@@ -5,6 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.sonandhan.boardit.dto.UserDTO" alias="userDTO" />
+		<typeAlias type="com.sonandhan.boardit.dto.BoardDTO" alias="boardDTO" />
 	</typeAliases>
 </configuration>
 
