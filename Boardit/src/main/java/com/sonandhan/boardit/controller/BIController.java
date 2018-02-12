@@ -39,6 +39,8 @@ public class BIController {
 	@Inject
 	private BoardService boardService;
 
+	private int boardNum = 1;
+
 	// 로그인 화면에서 로그인 버튼 클릭 후
 	@RequestMapping(value = "/home")
 	public String home(HttpServletRequest request) throws Exception {
@@ -173,7 +175,7 @@ public class BIController {
 	public String reqisterPOST(Model model, HttpServletRequest request) throws Exception {
 		System.out.println("reqister()");
 
-		BoardDTO board = new BoardDTO(3, request.getParameter("boardName"), "personal");
+		BoardDTO board = new BoardDTO(boardNum++, request.getParameter("boardName"), "personal");
 		boardService.registBoard(board);
 		model.addAttribute("result", "success");
 
