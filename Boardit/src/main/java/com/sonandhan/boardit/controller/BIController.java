@@ -1,11 +1,15 @@
 package com.sonandhan.boardit.controller;
 
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sonandhan.boardit.command.BICommand;
 import com.sonandhan.boardit.command.BIContentCommand;
@@ -39,26 +44,26 @@ public class BIController {
 	@Inject
 	private BoardService boardService;
 
-	private int boardNum = 1;
+	//private int boardNum = 3;
 
 	// 로그인 화면에서 로그인 버튼 클릭 후
-	@RequestMapping(value = "/home")
-	public String home(HttpServletRequest request) throws Exception {
-
-		logger.info("home");
-
-		UserDTO loginUser = userService.findByUserIdAndPassword(request.getParameter("userId"),
-				request.getParameter("userPassword"));
-
-		System.out.println(">>BIController - login(POST)");
-		System.out.println(">>BIController - loginUser : " + loginUser);
-
-		if (loginUser != null) {
-			return "home";
-		} else {
-			return "login";
-		}
-	}
+//	@RequestMapping(value = "/home")
+//	public String home(HttpServletRequest request) throws Exception {
+//
+//		logger.info("home");
+//
+//		UserDTO loginUser = userService.findByUserIdAndPassword(request.getParameter("userId"),
+//				request.getParameter("userPassword"));
+//
+//		System.out.println(">>BIController - login(POST)");
+//		System.out.println(">>BIController - loginUser : " + loginUser);
+//
+//		if (loginUser != null) {
+//			return "home";
+//		} else {
+//			return "login";
+//		}
+//	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
@@ -134,14 +139,46 @@ public class BIController {
 	// return "board";
 	// }
 
-	@RequestMapping(value = "/board", method = RequestMethod.GET)
-	public String board(Model model) {
+	// 로그인 처리
+	@RequestMapping(value = "/board")
+	public ModelAndView board(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+			throws Exception {
 
-		System.out.println("boardGET()");
-		// 작성 화면(form)만 띄움
-		return "board";
+		logger.info("board");
+
+		UserDTO loginUser = userService.findByUserIdAndPassword(request.getParameter("userId"),
+				request.getParameter("userPassword"), session);
+		System.out.println(">>BIController - login(POST)");
+		System.out.println(">>BIController - loginUser : " + loginUser);
+		
+		ModelAndView mv = null;
+
+		if (loginUser != null) { // login success
+			System.out.println(">>BIController - session msg : success");
+			mv = new ModelAndView("/board");
+			session.setAttribute("userLoginInfo", loginUser);
+			session.setAttribute("userId", loginUser.getUserId());
+			List<BoardDTO> list = boardService.readBoardWithUser(loginUser.getUserId());
+			System.out.println("PLZ :::: " + list.size());
+			mv.addObject(list);
+			return mv;
+		} else { // login failure
+			System.out.println(">>BIController - session msg : failure");
+			mv = new ModelAndView("/login");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+			out.flush();
+			return mv;
+		}
 	}
 
+	// 로그아웃
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.setAttribute("userLoginInfo", null);
+		return "redirect:login";
+	}
 	// @RequestMapping(value="/board", method = RequestMethod.POST)
 	// public String boardPOST(BoardDTO board, Model model) throws Exception {
 	//
@@ -172,10 +209,14 @@ public class BIController {
 	}
 
 	@RequestMapping(value = "/pop_board", method = RequestMethod.POST)
-	public String reqisterPOST(Model model, HttpServletRequest request) throws Exception {
+	public String reqisterPOST(Model model, HttpServletRequest request, HttpSession session) throws Exception {
 		System.out.println("reqister()");
+		
+//		UserDTO loginUser = userService.findByUserIdAndPassword(request.getParameter("userId"),
+//				request.getParameter("userPassword"), session);
 
-		BoardDTO board = new BoardDTO(boardNum++, request.getParameter("boardName"), "personal");
+		//BoardDTO board = new BoardDTO(boardNum++, request.getParameter("boardName"), "personal");
+		BoardDTO board = new BoardDTO(session.getAttribute("userId").toString(), request.getParameter("boardName"), request.getParameter("boardType"));
 		boardService.registBoard(board);
 		model.addAttribute("result", "success");
 

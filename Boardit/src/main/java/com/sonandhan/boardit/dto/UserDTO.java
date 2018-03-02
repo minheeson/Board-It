@@ -1,5 +1,10 @@
 package com.sonandhan.boardit.dto;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 public class UserDTO {
 
 	private String userId;
@@ -50,5 +55,7 @@ public class UserDTO {
 	public void setUserImg(String userImg) {
 		this.userImg = userImg;
 	}
+
+
 
 }

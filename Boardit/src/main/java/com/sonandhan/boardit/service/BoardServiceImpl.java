@@ -39,4 +39,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.readBoard();
 	}
 
+	@Override
+	public List<BoardDTO> readBoardWithUser(String boardUser) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("BoardServiceImpl ::::: " + boardUser);
+		return boardDAO.readBoardWithUser(boardUser);
+	}
+
 }

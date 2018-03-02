@@ -5,15 +5,23 @@
 
 <mapper namespace="com.example.mapper.boardMapper">
 
-	<select id="insertBoard" resultType="boardDTO">
-		INSERT INTO BOARD
-		(board_num,
-		board_name, board_type) VALUES(#{boardNum}, #{boardName},
+	<insert id="insertBoard" useGeneratedKeys="true">
+		INSERT INTO
+		BOARD
+		(board_user,
+		board_name, board_type) VALUES(#{boardUser},
+		#{boardName},
 		#{boardType});
-	</select>
+	</insert>
 
 	<select id="selectBoard" resultType="boardDTO">
 		SELECT * FROM BOARD;
+	</select>
+
+	<select id="selectBoardWithUser" parameterType = "hashmap" resultType="boardDTO">
+		SELECT * FROM BOARD
+		WHERE
+		board_user = #{boardUser};
 	</select>
 
 	<select id="selectBoardWithType" resultType="boardDTO">
@@ -21,7 +29,7 @@
 		WHERE
 		board_type = #{boardType};
 	</select>
-	
+
 	<select id="selectBoardWithNum" resultType="boardDTO">
 		SELECT * FROM BOARD
 		WHERE

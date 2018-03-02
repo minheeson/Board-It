@@ -13,5 +13,7 @@ public interface BoardService {
 	public List<BoardDTO> readBoardWithType(String boardType) throws Exception;
 
 	public List<BoardDTO> readBoard() throws Exception;
+	
+	public List<BoardDTO> readBoardWithUser(String boardUser)throws Exception;
 
 }

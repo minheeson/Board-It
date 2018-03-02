@@ -2,11 +2,20 @@ package com.sonandhan.boardit.dto;
 
 public class BoardDTO {
 
+	private String boardUser;
 	private int boardNum;
 	private String boardName;
 	private String boardType;
 
-	public BoardDTO(int boardNum, String boardName, String boardType) {
+	public BoardDTO(String boardUser, String boardName, String boardType) {
+		this.boardUser = boardUser;
+		this.boardName = boardName;
+		//this.boardNum = boardNum;
+		this.boardType = boardType;
+	}
+	
+	public BoardDTO(String boardUser, Integer boardNum, String boardName, String boardType) {
+		this.boardUser = boardUser;
 		this.boardName = boardName;
 		this.boardNum = boardNum;
 		this.boardType = boardType;

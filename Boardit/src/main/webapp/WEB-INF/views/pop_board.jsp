@@ -9,7 +9,7 @@
 <link href="<c:url value="/resources/css/pop_style.css?v=21"/>"
 	rel="stylesheet">
 
-<script src="<c:url value="/resources/js/pop_board.js?v=75" />"></script>
+<script src="<c:url value="/resources/js/pop_board.js?v=79" />"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
@@ -20,8 +20,9 @@
 		<p id="p_main">Create Board</p>
 		<form name="c_form" id="form_input" method="post" >
 			<div id="div_input">
-				<input type="text" name="boardName"id="c_txt" placeholder=" title" /> <input
-					type="text" id="c_txt_ex" placeholder=" explanation ... " />
+				<input type="text" name="boardName"id="c_txt" placeholder=" title" /> 
+				<input
+					type="text" id="c_txt_ex" name="boardType" placeholder=" explanation ... " />
 			</div>
 
 			<div id="div_btn">
