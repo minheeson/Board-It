@@ -6,7 +6,7 @@
 <head>
 <link href="<c:url value="/resources/css/login_style.css"/>"
 	rel="stylesheet" >
-<script src="<c:url value="/resources/js/login_index.js" />"></script>
+<script src="<c:url value="/resources/js/login_index.js?v=82" />"></script>
 
 <meta charset="UTF-8">
 <title>BOARD-IT</title>

@@ -44,7 +44,6 @@ public class BIController {
 	@Inject
 	private BoardService boardService;
 
-	//private int boardNum = 3;
 
 	// 로그인 화면에서 로그인 버튼 클릭 후
 //	@RequestMapping(value = "/home")
@@ -131,14 +130,6 @@ public class BIController {
 		return "profile";
 	}
 
-	// @RequestMapping("/board")
-	// public String board(Model model) {
-	//
-	// System.out.println("board()");
-	// // 작성 화면(form)만 띄움
-	// return "board";
-	// }
-
 	// 로그인 처리
 	@RequestMapping(value = "/board")
 	public ModelAndView board(HttpServletRequest request, HttpServletResponse response, HttpSession session)
@@ -158,9 +149,14 @@ public class BIController {
 			mv = new ModelAndView("/board");
 			session.setAttribute("userLoginInfo", loginUser);
 			session.setAttribute("userId", loginUser.getUserId());
+			System.out.println("USER :::: " + loginUser.getUserId());
 			List<BoardDTO> list = boardService.readBoardWithUser(loginUser.getUserId());
-			System.out.println("PLZ :::: " + list.size());
-			mv.addObject(list);
+			System.out.println("SIZE :::: " + list.size());
+//			for(int i=0; i<list.size(); i++) {
+//				System.out.println(list.get(i).getBoardName());
+//			}
+//		
+			mv.addObject("list", list);
 			return mv;
 		} else { // login failure
 			System.out.println(">>BIController - session msg : failure");

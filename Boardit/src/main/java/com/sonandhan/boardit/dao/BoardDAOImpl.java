@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sonandhan.boardit.dto.BoardDTO;
@@ -42,8 +43,17 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardDTO> readBoardWithUser(String boardUser) {
 		// TODO Auto-generated method stub
-		System.out.println("BoardDAOImpl :::::: "+ boardUser);
-		return sqlSession.selectList(namespace + ".selectBoardWithUser", boardUser);
+		System.out.println("BoardDAOImpl :::::: " + boardUser);
+
+		List<BoardDTO> list = sqlSession.selectList(namespace + ".selectBoardWithUser", boardUser);
+//		System.out.println("BoardDAOImpl ::: " + list.size());
+//
+//		for (int i = 0; i < list.size(); i++) {
+//			BoardDTO temp = list.get(i);
+//			System.out.println("TESTTEST :::: " +temp.getBoardNum());
+//		}
+		
+		return list;
 	}
 
 	@Override

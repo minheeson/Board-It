@@ -36,15 +36,17 @@
 						<p class="p_personal">Personal Board</p>
 					</div>
 					<div class="ct_personal_board">
-						<c:when test="${fn:length(list) > 0 }">
-							<c:forEach items="${list }" var="row">
+						<c:if test="${not empty list}">
 
-								<ul class="boardList" id="personalList">
-									<li><a href="https://www.w3schools.com" id="a_school">SAMPLE</a></li>
-									<li><a href="https://www.w3schools.com">${row.board_name }</a>
-								</ul>
-							</c:forEach>
-						</c:when>
+
+							<ul class="boardList" id="personalList">
+								<li><a href="https://www.w3schools.com" id="a_school">SAMPLE</a></li>
+								<c:forEach items="${list }" var="row">
+									<li><a href="https://www.w3schools.com">${row.board_name}</a>
+								</c:forEach>
+							</ul>
+
+						</c:if>
 					</div>
 				</div>
 

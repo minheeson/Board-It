@@ -18,7 +18,7 @@
 		SELECT * FROM BOARD;
 	</select>
 
-	<select id="selectBoardWithUser" parameterType = "hashmap" resultType="boardDTO">
+	<select id="selectBoardWithUser" resultType="boardDTO">
 		SELECT * FROM BOARD
 		WHERE
 		board_user = #{boardUser};

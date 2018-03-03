@@ -13,7 +13,7 @@ public interface BoardDAO {
 	public void insertBoard(BoardDTO boardDTO);
 	public List<BoardDTO> readBoard() throws Exception;
 	public List<BoardDTO> readBoardWithType(String boardType);
-	public List<BoardDTO> readBoardWithUser(String boardUser);
+	public List<BoardDTO> readBoardWithUser(String boardUser) throws Exception;
 	public BoardDTO readBoardWithNum(int boardNum);
 	public UserDTO findByUserIdAndPassword(String userId, String userPassword, HttpSession session);
 }
