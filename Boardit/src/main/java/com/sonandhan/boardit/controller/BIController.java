@@ -152,9 +152,9 @@ public class BIController {
 			System.out.println("USER :::: " + loginUser.getUserId());
 			List<BoardDTO> list = boardService.readBoardWithUser(loginUser.getUserId());
 			System.out.println("SIZE :::: " + list.size());
-//			for(int i=0; i<list.size(); i++) {
-//				System.out.println(list.get(i).getBoardName());
-//			}
+			for(int i=0; i<list.size(); i++) {
+				System.out.println(list.get(i).getBoardName());
+			}
 //		
 			mv.addObject("list", list);
 			return mv;
